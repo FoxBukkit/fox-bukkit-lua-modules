@@ -1,6 +1,10 @@
 local Command = require("Command")
 local Server = require("Server")
 
+local Set = bindClass("java.util.Set")
+local Iterator = bindClass("java.util.Iterator")
+local Entry = bindClass("java.util.Map").Entry
+
 local function sendMultilineReply(ply, reply)
 	for line in reply:gmatch('[^\n]+') do
 		ply:sendReply(line)
@@ -30,11 +34,12 @@ Command:register{
 		end
 
 		local displayedCmds = {}
-		local it = Command:getCommands():entrySet():iterator()
-		while it:hasNext() do
-			local entry = it:next()
-			local cmd = entry:getKey()
-			local info = entry:getValue()
+		local es = Command:getCommands():entrySet()
+		local it = Set.iterator(es)
+		while Iterator.hasNext(it) do
+			local entry = Iterator.next(it)
+			local cmd = Entry.getKey(entry)
+			local info = Entry.getValue(entry)
 			if ply:hasPermission(info:get("permission")) then
 				table.insert(displayedCmds, "/" .. cmd)
 			end
