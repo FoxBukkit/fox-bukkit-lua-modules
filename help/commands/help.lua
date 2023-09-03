@@ -35,7 +35,7 @@ Command:register{
 			local entry = it:next()
 			local cmd = entry:getKey()
 			local info = entry:getValue()
-			if ply:hasPermission(info:get("permission")) then
+			if (not info:get("hidden")) and ply:hasPermission(info:get("permission")) then
 				table.insert(displayedCmds, "/" .. cmd)
 			end
 		end
