@@ -1,5 +1,5 @@
-local Command = require("Command")
-local Server = require("Server")
+local Command = require('Command')
+local Server = require('Server')
 
 local function sendMultilineReply(ply, reply)
 	for line in reply:gmatch('[^\n]+') do
@@ -8,24 +8,22 @@ local function sendMultilineReply(ply, reply)
 end
 
 Command:register{
-	name = "fbhelp",
-	permission = "foxbukkit.help",
-	arguments = {
-		{
-			name = "command",
-			type = "string",
-			required = false
-		}
-	},
+	name = 'fbhelp',
+	permission = 'foxbukkit.help',
+	arguments = { {
+		name = 'command',
+		type = 'string',
+		required = false,
+	} },
 	run = function(self, ply, args)
 		if args.command then
 			local info = Command:getInfo(args.command)
-			if not info or not ply:hasPermission(info:get("permission")) then
-				ply:sendReply("Command not found")
+			if not info or not ply:hasPermission(info:get('permission')) then
+				ply:sendReply('Command not found')
 				return
 			end
-			sendMultilineReply(ply, info:get("help") or "No help text available")
-			sendMultilineReply(ply, info:get("usage") or "No usage text available")
+			sendMultilineReply(ply, info:get('help') or 'No help text available')
+			sendMultilineReply(ply, info:get('usage') or 'No usage text available')
 			return
 		end
 
@@ -35,11 +33,11 @@ Command:register{
 			local entry = it:next()
 			local cmd = entry:getKey()
 			local info = entry:getValue()
-			if info:get("hidden") ~= "true" and ply:hasPermission(info:get("permission")) then
-				table.insert(displayedCmds, "/" .. cmd)
+			if info:get('hidden') ~= 'true' and ply:hasPermission(info:get('permission')) then
+				table.insert(displayedCmds, '/' .. cmd)
 			end
 		end
-		ply:sendReply("Commands: " .. table.concat(displayedCmds, ", "))
+		ply:sendReply('Commands: ' .. table.concat(displayedCmds, ', '))
 		return
-	end
+	end,
 }

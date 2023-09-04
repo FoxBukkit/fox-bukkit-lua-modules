@@ -1,10 +1,10 @@
-local Command = require("Command")
-local Server = require("Server")
-local Player = require("Player")
+local Command = require('Command')
+local Server = require('Server')
+local Player = require('Player')
 
-local Event = require("Event")
+local Event = require('Event')
 Event:register{
-	class = "org.bukkit.event.player.PlayerMoveEvent",
+	class = 'org.bukkit.event.player.PlayerMoveEvent',
 	priority = Event.Priority.HIGH,
 	run = function(self, event)
 		local ply = Player:extend(event:getPlayer())
@@ -13,33 +13,28 @@ Event:register{
 		else
 			event:setCancelled(false)
 		end
-	end
+	end,
 }
 
-
-
 Command:register{
-	name = "freeze",
+	name = 'freeze',
 	action = {
-		format = "%s unfroze %s",
-		isProperty = false
+		format = '%s unfroze %s',
+		isProperty = false,
 	},
-	arguments = {
-		{
-			name = "target",
-			type = "player",
-			defaultSelf = false,
-			required = true
-		}
-	},
+	arguments = { {
+		name = 'target',
+		type = 'player',
+		defaultSelf = false,
+		required = true,
+	} },
 	run = function(self, ply, args)
 		local override = {}
 
 		if not args.target.frozen then
-			override.format = "%s froze %s"
+			override.format = '%s froze %s'
 		end
 		args.target.frozen = not args.target.frozen
 		self:sendActionReply(ply, args.target, override, {})
-	end
+	end,
 }
-

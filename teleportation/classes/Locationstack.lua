@@ -8,15 +8,11 @@ return {
 		end
 		table_insert(ply._locationstack, location or ply:getLocation())
 	end,
-
 	clear = function(self, ply)
 		ply._locationstack = nil
 	end,
-
 	pop = function(self, ply)
-		if not ply._locationstack then
-			return
-		end
+		if not ply._locationstack then return end
 		return table_remove(ply._locationstack)
-	end
+	end,
 }

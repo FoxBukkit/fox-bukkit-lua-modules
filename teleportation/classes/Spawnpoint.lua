@@ -5,16 +5,15 @@ local spawnpoints = require('Persister'):get('spawnpoints')
 
 Spawnpoint = {
 	getGroupSpawn = function(self, group, world)
-		local worldName = (world and world:getName():lower()) or "world"
+		local worldName = (world and world:getName():lower()) or 'world'
 		local worldSpawn = spawnpoints[worldName]
 		if worldSpawn then
-			return worldSpawn[group and group:lower() or "default"] or worldSpawn.default
+			return worldSpawn[group and group:lower() or 'default'] or worldSpawn.default
 		end
 	end,
-
 	getPlayerSpawn = function(self, ply, group, noBedSpawn, world, noWorldSpawn)
 		if not group then
-			group = ply:getGroup() or "guest"
+			group = ply:getGroup() or 'guest'
 		end
 		if not world then
 			world = ply:getWorld()
@@ -33,7 +32,6 @@ Spawnpoint = {
 			return spawn
 		end
 	end,
-
 	setGroupSpawn = function(self, group, world, location)
 		local worldName = world:getName():lower()
 		local worldSpawn = spawnpoints[worldName]
@@ -43,17 +41,16 @@ Spawnpoint = {
 		worldSpawn[group:lower()] = location
 		spawnpoints[worldName] = worldSpawn
 	end,
-
 	getSpawnpoints = function(self, world)
 		if world then
 			return spawnpoints[world:getName():lower()] or {}
 		end
 		return spawnpoints
-	end
+	end,
 }
 
 Event:register{
-	class = "org.bukkit.event.player.PlayerRespawnEvent",
+	class = 'org.bukkit.event.player.PlayerRespawnEvent',
 	priority = Event.Priority.HIGH,
 	ignoreCancelled = true,
 	run = function(self, event)
@@ -62,12 +59,12 @@ Event:register{
 		if spawn then
 			event:setRespawnLocation(spawn)
 		end
-	end
+	end,
 }
 
 Event:registerReadOnlyPlayerJoin(function(ply)
 	local hasPlayedBefore = ply.hasPlayedBefore
-	if type(hasPlayedBefore) ~= "boolean" then
+	if type(hasPlayedBefore) ~= 'boolean' then
 		hasPlayedBefore = hasPlayedBefore(ply)
 	end
 	if not hasPlayedBefore then
@@ -81,7 +78,7 @@ Player:addExtensions{
 	end,
 	teleportToSpawn = function(self)
 		return self:teleport(self:getSpawn())
-	end
+	end,
 }
 
 return Spawnpoint
