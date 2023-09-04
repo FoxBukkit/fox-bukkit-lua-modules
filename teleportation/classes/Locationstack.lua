@@ -1,7 +1,9 @@
 local table_insert = table.insert
 local table_remove = table.remove
+local Player = require('Player')
+local Event = require('Event')
 
-return {
+local M = {
 	add = function(_, ply, location)
 		if not ply._locationstack then
 			ply._locationstack = {}
@@ -16,3 +18,14 @@ return {
 		return table_remove(ply._locationstack)
 	end,
 }
+
+Event:register{
+	class = 'org.bukkit.event.entity.PlayerDeathEvent',
+	priority = Event.Priority.HIGH,
+	run = function(_, event)
+		local ply = Player:extend(event:getEntity())
+		M:add(ply)
+	end,
+}
+
+return M

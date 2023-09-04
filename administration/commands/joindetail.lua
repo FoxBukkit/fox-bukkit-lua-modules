@@ -6,7 +6,6 @@ local table_concat = table.concat
 
 Event:registerReadOnlyPlayerJoin(function(ply)
 	local admintools = {}
-	local played = ''
 	if not ply.hasLoggedInBefore then
 		ply.hasLoggedInBefore = true
 		table_insert(admintools, '<color name="dark_purple">[FBAT]</color> ' .. ply:getDisplayName() .. ' first join')
