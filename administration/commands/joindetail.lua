@@ -8,13 +8,8 @@ Event:registerReadOnlyPlayerJoin(function(ply)
 	local admintools = {}
 	local played = ''
 	if not ply.hasLoggedInBefore then
-		played = ' has not played before.'
 		ply.hasLoggedInBefore = true
+		table_insert(admintools, '<color name="dark_purple">[FBAT]</color> ' .. ply:getDisplayName() .. ' first join')
+		Chat:sendLocalToPermission(table_concat(admintools, ' '), 'foxbukkit.opchat', nil)
 	end
-	table_insert(admintools, '<color name="dark_purple">(FBAT)</color> ' .. ply:getDisplayName() .. played)
-	table_insert(admintools, Chat:makeButton('/who "' .. ply:getName() .. '"', 'Who', 'aqua', true, false))
-	table_insert(admintools, Chat:makeButton('/ipinfo "' .. ply:getName() .. '"', 'IP', 'aqua', true, false))
-	table_insert(admintools, Chat:makeButton('/mute "' .. ply:getName() .. '"', 'Mute', 'gold', true, false))
-	table_insert(admintools, Chat:makeButton('/ban "' .. ply:getName() .. '" ', 'Ban', 'red', false, false))
-	Chat:sendLocalToPermission(table_concat(admintools, ' '), 'foxbukkit.opchat', nil)
 end)
