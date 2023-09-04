@@ -69,8 +69,8 @@ Command:register{
 	} },
 	run = function(self, ply, args)
 		fixedServerTime = args.time
-		for _, ply in next, Player:getAll() do
-			setPlayerFixedTime(ply)
+		for _, otherPly in next, Player:getAll() do
+			setPlayerFixedTime(otherPly)
 		end
 		local formatOverride = {}
 		if args.time < 0 then

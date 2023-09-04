@@ -1,5 +1,4 @@
 local Command = require('Command')
-require('Homepoint')
 
 Command:register{
 	name = 'sethome',

@@ -1,7 +1,5 @@
 local Command = require('Command')
 local Permission = require('Permission')
-local Spawnpoint = require('Spawnpoint')
-local Homepoint = require('Homepoint')
 local Locationstack = require('Locationstack')
 
 Command:register{

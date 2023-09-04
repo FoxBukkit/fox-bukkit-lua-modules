@@ -1,8 +1,5 @@
 local Command = require('Command')
-local Permission = require('Permission')
 local Locationstack = require('Locationstack')
-require('Chat')
-require('Player')
 
 local Location = bindClass('org.bukkit.Location')
 
@@ -27,7 +24,7 @@ Command:register{
 		required = false,
 		default = false,
 	} },
-	run = function(self, ply, args, flags)
+	run = function(self, ply, args)
 		local world = ply:getWorld()
 
 		local x = args.x

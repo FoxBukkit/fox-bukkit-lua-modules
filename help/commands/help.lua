@@ -1,5 +1,4 @@
 local Command = require('Command')
-local Server = require('Server')
 
 local function sendMultilineReply(ply, reply)
 	for line in reply:gmatch('[^\n]+') do
@@ -15,7 +14,7 @@ Command:register{
 		type = 'string',
 		required = false,
 	} },
-	run = function(self, ply, args)
+	run = function(_, ply, args)
 		if args.command then
 			local info = Command:getInfo(args.command)
 			if not info or not ply:hasPermission(info:get('permission')) then

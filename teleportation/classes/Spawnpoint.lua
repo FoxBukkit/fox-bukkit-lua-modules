@@ -3,8 +3,8 @@ local Event = require('Event')
 
 local spawnpoints = require('Persister'):get('spawnpoints')
 
-Spawnpoint = {
-	getGroupSpawn = function(self, group, world)
+local Spawnpoint = {
+	getGroupSpawn = function(_, group, world)
 		local worldName = (world and world:getName():lower()) or 'world'
 		local worldSpawn = spawnpoints[worldName]
 		if worldSpawn then
@@ -32,7 +32,7 @@ Spawnpoint = {
 			return spawn
 		end
 	end,
-	setGroupSpawn = function(self, group, world, location)
+	setGroupSpawn = function(_, group, world, location)
 		local worldName = world:getName():lower()
 		local worldSpawn = spawnpoints[worldName]
 		if not worldSpawn then
@@ -41,7 +41,7 @@ Spawnpoint = {
 		worldSpawn[group:lower()] = location
 		spawnpoints[worldName] = worldSpawn
 	end,
-	getSpawnpoints = function(self, world)
+	getSpawnpoints = function(_, world)
 		if world then
 			return spawnpoints[world:getName():lower()] or {}
 		end
@@ -53,7 +53,7 @@ Event:register{
 	class = 'org.bukkit.event.player.PlayerRespawnEvent',
 	priority = Event.Priority.HIGH,
 	ignoreCancelled = true,
-	run = function(self, event)
+	run = function(_, event)
 		local ply = Player:extend(event:getPlayer())
 		local spawn = Spawnpoint:getPlayerSpawn(ply, nil, nil, nil, true)
 		if spawn then

@@ -1,6 +1,5 @@
 local Command = require('Command')
 local Locationstack = require('Locationstack')
-require('Homepoint')
 
 Command:register{
 	name = 'home',

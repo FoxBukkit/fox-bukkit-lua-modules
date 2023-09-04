@@ -56,8 +56,8 @@ Command:register{
 	} },
 	run = function(self, ply, args)
 		fixedServerWeather = args.weather
-		for _, ply in next, Player:getAll() do
-			setPlayerFixedWeather(ply, args.weather)
+		for _, otherPly in next, Player:getAll() do
+			setPlayerFixedWeather(otherPly, args.weather)
 		end
 		local formatOverride = {}
 		if not args.weather then

@@ -11,13 +11,11 @@ Event:register{
 	class = 'org.bukkit.event.player.PlayerQuitEvent',
 	priority = Event.Priority.MONITOR,
 	ignoreCancelled = true,
-	run = function(self, event)
+	run = function(_, event)
 		local ply = Player:extend(event:getPlayer())
 		ply.logoutLocation = ply:getLocation()
 	end,
 }
-
-local Location = bindClass('org.bukkit.Location')
 
 Command:register{
 	name = 'tp',

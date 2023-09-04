@@ -14,7 +14,7 @@ Command:register{
 		type = 'string',
 		required = false,
 	} },
-	run = function(self, ply, args, flags)
+	run = function(self, ply, args)
 		if not args.group then
 			Locationstack:add(ply)
 			ply:teleportToSpawn()

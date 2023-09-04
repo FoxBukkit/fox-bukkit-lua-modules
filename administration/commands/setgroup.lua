@@ -1,6 +1,4 @@
 local Command = require('Command')
-local Server = require('Server')
-local Player = require('Player')
 local Permission = require('Permission')
 
 Command:register{

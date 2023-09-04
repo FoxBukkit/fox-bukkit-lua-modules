@@ -1,12 +1,11 @@
 local Command = require('Command')
-local Server = require('Server')
 local Player = require('Player')
 
 local Event = require('Event')
 Event:register{
 	class = 'org.bukkit.event.player.PlayerMoveEvent',
 	priority = Event.Priority.HIGH,
-	run = function(self, event)
+	run = function(_, event)
 		local ply = Player:extend(event:getPlayer())
 		if ply.frozen then
 			event:setCancelled(true)

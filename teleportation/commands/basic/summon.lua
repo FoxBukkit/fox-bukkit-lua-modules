@@ -15,7 +15,7 @@ Command:register{
 		required = true,
 		immunityRequirement = Permission.Immunity.GREATER,
 	} },
-	run = function(self, ply, args, flags)
+	run = function(self, ply, args)
 		for _, target in next, args.target do
 			Locationstack:add(target)
 			target:teleport(ply)

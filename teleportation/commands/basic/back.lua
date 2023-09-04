@@ -4,7 +4,7 @@ local Locationstack = require('Locationstack')
 Command:register{
 	name = 'back',
 	arguments = {},
-	run = function(self, ply, args, flags)
+	run = function(_, ply)
 		local oldLocation = Locationstack:pop(ply)
 		if oldLocation then
 			ply:teleport(oldLocation)

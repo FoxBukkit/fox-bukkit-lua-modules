@@ -1,4 +1,3 @@
-local Player = require('Player')
 local Event = require('Event')
 local Chat = require('Chat')
 

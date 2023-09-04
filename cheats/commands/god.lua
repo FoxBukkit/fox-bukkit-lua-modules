@@ -9,7 +9,7 @@ Event:register{
 	class = 'org.bukkit.event.entity.EntityDamageEvent',
 	priority = Event.Priority.HIGHEST,
 	ignoreCancelled = true,
-	run = function(self, event)
+	run = function(_, event)
 		if event:getEntityType() == EntityTypePLAYER and Player:extend(event:getEntity())._godModeEnabled then
 			event:setCancelled(true)
 		end

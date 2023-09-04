@@ -34,7 +34,7 @@ Command:register{
 		required = false,
 		immunityRequirement = Permission.Immunity.GREATER,
 	} },
-	run = function(self, ply, args, flags)
+	run = function(self, ply, args)
 		local itemStack = luajava.new(ItemStack, args.item, args.amount, args.data)
 		args.target:getInventory():addItem({ itemStack })
 		self:sendActionReply(

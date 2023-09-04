@@ -16,7 +16,7 @@ Event:register{
 	class = 'org.bukkit.event.player.PlayerTeleportEvent',
 	priority = Event.Priority.MONITOR,
 	ignoreCancelled = true,
-	run = function(self, event)
+	run = function(_, event)
 		local ply = Player:extend(event:getPlayer())
 		local oldWorld = event:getFrom():getWorld()
 		local newWorld = event:getTo():getWorld()
@@ -39,7 +39,7 @@ Command:register{
 		type = 'string',
 		required = true,
 	} },
-	run = function(self, ply, args, flags)
+	run = function(self, ply, args)
 		local worldName = args.world:lower()
 
 		if WORLD_ALIASES[worldName] then

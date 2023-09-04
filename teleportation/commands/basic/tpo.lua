@@ -49,16 +49,16 @@ Command:register{
 			local y = args.z and args.yz or world:getHighestBlockYAt(x, z)
 
 			local location = luajava.new(Location, world, x, y, z)
-			for _, ply in next, args.from_target do
-				Locationstack:add(ply)
-				ply:teleport(location)
+			for _, otherPly in next, args.from_target do
+				Locationstack:add(otherPly)
+				otherPly:teleport(location)
 			end
 			self:sendActionReply(ply, args.from_target, { format = '%s teleported %s to %d %d %d' }, x, y, z)
 			return
 		end
-		for _, ply in next, args.from_target do
-			Locationstack:add(ply)
-			ply:teleport(args.to_target)
+		for _, otherPly in next, args.from_target do
+			Locationstack:add(otherPly)
+			otherPly:teleport(args.to_target)
 		end
 		self:sendActionReply(ply, args.from_target, {}, args.to_target)
 	end,

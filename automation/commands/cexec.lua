@@ -15,9 +15,9 @@ Command:register{
 			ply:sendError('No appropriate target found')
 			return
 		end
-		local args = table_concat(args, ' ', 2)
+		local argsConcat = table_concat(args, ' ', 2)
 		for _, target in next, targets do
-			target:chat(args)
+			target:chat(argsConcat)
 		end
 		ply:sendReply('Cexec dispatched')
 	end,

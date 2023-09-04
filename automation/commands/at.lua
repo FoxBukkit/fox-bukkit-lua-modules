@@ -11,11 +11,11 @@ end
 
 Command:register{
 	name = 'at',
-	run = function(self, ply, args)
+	run = function(_, ply, args)
 		local time = args[1]
-		local args = table_concat(args, ' ', 2)
+		local argsConcat = table_concat(args, ' ', 2)
 		Server:runOnMainThread(function()
-			sendMultiCommand(ply, args)
+			sendMultiCommand(ply, argsConcat)
 		end, time * 20)
 		ply:sendReply('Command scheduled')
 	end,

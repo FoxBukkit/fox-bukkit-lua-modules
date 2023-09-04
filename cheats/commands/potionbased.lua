@@ -1,5 +1,4 @@
 local Command = require('Command')
-local Event = require('Event')
 
 local PotionEffectType = bindClass('org.bukkit.potion.PotionEffectType')
 local PotionEffect = bindClass('org.bukkit.potion.PotionEffect')

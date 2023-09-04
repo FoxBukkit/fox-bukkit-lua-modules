@@ -1,12 +1,11 @@
 local Command = require('Command')
-local Server = require('Server')
 local Player = require('Player')
 
 local Event = require('Event')
 Event:register{
 	class = 'org.bukkit.event.player.AsyncPlayerChatEvent',
 	priority = Event.Priority.HIGH,
-	run = function(self, event)
+	run = function(_, event)
 		local msg = event:getMessage()
 		local ply = Player:extend(event:getPlayer())
 		if ply.nocaps then

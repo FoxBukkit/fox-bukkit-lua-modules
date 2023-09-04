@@ -10,7 +10,7 @@ Command:register{
 		type = 'string',
 		required = false,
 	} },
-	run = function(self, ply, args, flags)
+	run = function(self, ply, args)
 		if not args.name then
 			local warpNames = {}
 			for _, warp in pairs(Warp:getAll()) do

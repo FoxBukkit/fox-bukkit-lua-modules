@@ -1,5 +1,4 @@
 local Command = require('Command')
-local Server = require('Server')
 local Event = require('Event')
 
 local table_concat = table.concat
@@ -19,15 +18,15 @@ end)
 
 Command:register{
 	name = 'autoexec',
-	run = function(self, ply, args)
+	run = function(_, ply, args)
 		local method = args[1]
 		if not ply.autoexec then
 			ply.autoexec = {}
 		end
 		if method == 'add' then
-			local args = table_concat(args, ' ', 2)
-			table_insert(ply.autoexec, args)
-			ply:sendReply('Added "' .. args .. '" to your autoexec')
+			local argsConcat = table_concat(args, ' ', 2)
+			table_insert(ply.autoexec, argsConcat)
+			ply:sendReply('Added "' .. argsConcat .. '" to your autoexec')
 		elseif method == 'remove' then
 			local id = tonumber(args[2])
 			local cmd = table_remove(ply.autoexec, id)

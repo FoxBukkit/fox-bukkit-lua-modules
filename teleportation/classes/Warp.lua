@@ -1,4 +1,3 @@
-local Player = require('Player')
 local Permission = require('Permission')
 
 local warps = require('Persister'):get('warps')
@@ -75,10 +74,10 @@ for k, v in pairs(warps.__value) do
 end
 
 Warp = {
-	get = function(self, name)
+	get = function(_, name)
 		return warps[name:lower()]
 	end,
-	make = function(self, name, ply)
+	make = function(_, name, ply)
 		local warp = setmetatable(
 			{
 				owner = ply:getUniqueId(),
@@ -95,16 +94,16 @@ Warp = {
 		warps[name:lower()] = warp
 		return warp
 	end,
-	add = function(self, warp)
+	add = function(_, warp)
 		warps[warp.name:lower()] = warp
 	end,
-	delete = function(self, warp)
+	delete = function(_, warp)
 		if type(warp) ~= 'string' then
 			warp = warp.name:lower()
 		end
 		warps[warp] = nil
 	end,
-	getAll = function(self)
+	getAll = function()
 		return warps.__value
 	end,
 	Mode = WarpMode,

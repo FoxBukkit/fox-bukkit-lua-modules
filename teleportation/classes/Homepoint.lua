@@ -1,17 +1,17 @@
 local Player = require('Player')
 
 local Homepoint = {
-	getPlayerHome = function(self, ply, name)
+	getPlayerHome = function(_, ply, name)
 		if not ply.homepoints then return end
 		return ply.homepoints[name and name:lower() or 'default']
 	end,
-	getPlayerHomes = function(self, ply)
+	getPlayerHomes = function(_, ply)
 		return ply.homepoints or {}
 	end,
-	clearPlayerHomes = function(self, ply)
+	clearPlayerHomes = function(_, ply)
 		ply.homepoints = nil
 	end,
-	setPlayerHome = function(self, ply, name, location)
+	setPlayerHome = function(_, ply, name, location)
 		ply.homepoints = ply.homepoints or {}
 		ply.homepoints[name and name:lower() or 'default'] = location
 		ply:__save()
