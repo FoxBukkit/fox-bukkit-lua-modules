@@ -14,16 +14,13 @@ Command:register{
 		type = 'players',
 		immunityRequirement = Permission.Immunity.GREATER,
 	} },
-	run = function(self, ply, args, flags)
-		local resetHome = flags:contains('r')
+	run = function(self, ply, args)
 		for _, target in next, args.target do
 			Locationstack:clear(ply)
-			if resetHome then
-				target:clearHomes()
-				target:setBedSpawnLocation(nil, true)
-			end
+			target:clearHomes()
+			target:setBedSpawnLocation(nil, true)
 			target:teleportToSpawn()
 		end
-		self:sendActionReply(ply, args.target, {}, resetHome and ' (and reset all homes)' or '')
+		self:sendActionReply(ply, args.target, {}, ' (and reset all homes)')
 	end,
 }

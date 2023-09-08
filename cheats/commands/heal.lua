@@ -39,13 +39,9 @@ Command:register{
 		required = false,
 		immunityRequirement = Permission.Immunity.GREATER,
 	} },
-	run = function(self, ply, args, flags)
-		local feedToo = flags:contains('f')
+	run = function(self, ply, args)
 		for _, target in next, args.target do
 			target:setHealth(target:getMaxHealth())
-			if feedToo then
-				target:setFoodLevel(FOOD_MAX)
-			end
 		end
 		self:sendActionReply(ply, args.target, {})
 	end,

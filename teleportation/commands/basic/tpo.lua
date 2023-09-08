@@ -20,42 +20,9 @@ Command:register{
 		name = 'to_target',
 		type = 'player',
 		required = true,
-		flagsForbidden = 'c',
 		immunityRequirement = Permission.Immunity.GREATER_OR_EQUAL,
-	}, {
-		name = 'x',
-		type = 'number',
-		required = true,
-		flagsRequired = 'c',
-	}, {
-		name = 'yz',
-		type = 'number',
-		required = true,
-		flagsRequired = 'c',
-	}, {
-		name = 'z',
-		type = 'number',
-		required = false,
-		default = false,
-		flagsRequired = 'c',
 	} },
 	run = function(self, ply, args, flags)
-		if flags:contains('c') then
-			local world = ply:getWorld()
-
-			local x = args.x
-			local z = args.z or args.yz
-
-			local y = args.z and args.yz or world:getHighestBlockYAt(x, z)
-
-			local location = luajava.new(Location, world, x, y, z)
-			for _, otherPly in next, args.from_target do
-				Locationstack:add(otherPly)
-				otherPly:teleport(location)
-			end
-			self:sendActionReply(ply, args.from_target, { format = '%s teleported %s to %d %d %d' }, x, y, z)
-			return
-		end
 		for _, otherPly in next, args.from_target do
 			Locationstack:add(otherPly)
 			otherPly:teleport(args.to_target)

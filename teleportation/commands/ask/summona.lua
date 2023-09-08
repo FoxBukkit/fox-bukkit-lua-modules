@@ -13,13 +13,8 @@ Command:register{
 		type = 'player',
 		required = true,
 	} },
-	run = function(self, ply, args, flags)
+	run = function(self, ply, args)
 		local cmd = self
-
-		if flags:contains('f') then
-			ply:forgetConfirmation('summona_' .. args.target:getUniqueId():toString())
-			return
-		end
 
 		local question = args.target:askConfirmation(
 			'summona_' .. ply:getUniqueId():toString(),

@@ -2,6 +2,24 @@ local Command = require('Command')
 local Locationstack = require('Locationstack')
 
 Command:register{
+	name = 'tpa-forget',
+	action = {
+		format = '%s forgot %s teleport request',
+		isProperty = true,
+	},
+	permissionOther = false,
+	arguments = { {
+		name = 'target',
+		type = 'player',
+		required = true,
+	} },
+	run = function(self, ply, args)
+		ply:forgetConfirmation('tpa_' .. args.target:getUniqueId():toString())
+		self:sendActionReply(ply, args.target, {})
+	end,
+}
+
+Command:register{
 	name = 'tpa',
 	action = {
 		format = '%s teleported to %s',
@@ -13,13 +31,8 @@ Command:register{
 		type = 'player',
 		required = true,
 	} },
-	run = function(self, ply, args, flags)
+	run = function(self, ply, args)
 		local cmd = self
-
-		if flags:contains('f') then
-			ply:forgetConfirmation('tpa_' .. args.target:getUniqueId():toString())
-			return
-		end
 
 		local question = args.target:askConfirmation(
 			'tpa_' .. ply:getUniqueId():toString(),

@@ -16,17 +16,10 @@ Command:register{
 		defaultSelf = true,
 		immunityRequirement = Permission.Immunity.GREATER,
 	} },
-	run = function(self, ply, args, flags)
-		local clearAll = flags:contains('a')
+	run = function(self, ply, args)
 		for _, target in next, args.target do
 			local inventory = target:getInventory()
-			if clearAll then
-				inventory:clear()
-			else
-				for i = 9, 35 do
-					inventory:clear(i)
-				end
-			end
+			inventory:clear()
 		end
 		self:sendActionReply(ply, args.target, {})
 	end,
