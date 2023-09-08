@@ -2,8 +2,6 @@ local Command = require('Command')
 local Permission = require('Permission')
 local Locationstack = require('Locationstack')
 
-local Location = bindClass('org.bukkit.Location')
-
 Command:register{
 	name = 'tpo',
 	action = {
@@ -22,7 +20,7 @@ Command:register{
 		required = true,
 		immunityRequirement = Permission.Immunity.GREATER_OR_EQUAL,
 	} },
-	run = function(self, ply, args, flags)
+	run = function(self, ply, args)
 		for _, otherPly in next, args.from_target do
 			Locationstack:add(otherPly)
 			otherPly:teleport(args.to_target)

@@ -23,7 +23,7 @@ Command:register{
 		default = false,
 	} },
 	run = function(self, ply, args)
-		Teleporter:teleport_to_coords(ply, ply, args)
+		local x, y, z = Teleporter:teleport_to_coords(ply, ply, args)
 		self:sendActionReply(ply, ply, {}, x, y, z)
 	end,
 }

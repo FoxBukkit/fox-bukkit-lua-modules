@@ -1,4 +1,5 @@
 local Command = require('Command')
+local Permission = require('Permission')
 local Teleporter = require('Teleporter')
 
 Command:register{
@@ -28,8 +29,9 @@ Command:register{
 		default = false,
 	} },
 	run = function(self, ply, args)
+		local x, y, z
 		for _, otherPly in next, args.from_target do
-			Teleporter:teleport_to_coords(ply, otherPly, args)
+			x, y, z = Teleporter:teleport_to_coords(ply, otherPly, args)
 		end
 		self:sendActionReply(ply, args.target, {}, x, y, z)
 	end,

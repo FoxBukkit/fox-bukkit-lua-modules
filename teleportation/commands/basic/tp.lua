@@ -14,7 +14,7 @@ Command:register{
 		type = 'player',
 		required = true,
 		immunityRequirement = Permission.Immunity.GREATER_OR_EQUAL,
-	},
+	} },
 	run = function(self, ply, args)
 		Locationstack:add(ply)
 		ply:teleport(args.target)
